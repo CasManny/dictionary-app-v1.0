@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Container from '@mui/material/Container'
+import { Definitions, Header} from './components'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    const [word, setWord] = useState('')
+    const [meanings, setMeanings] = useState([])
+    const [category, setCategory] = useState('en')
+
+    const dictionaryApi = async () => {
+        try {
+            const {data} = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`)
+            setMeanings(data)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+    
+
+    useEffect(() => {
+        dictionaryApi()
+    }, [word, category])
+    return (
+        <div className='App'>
+            <Container maxWidth="md" className='container'> 
+                <Header category={category} setCategory={setCategory} word={word} setWord={setWord} setMeanings={setMeanings} />
+                <Definitions word={word} meanings={meanings} category={category}/>
+            </Container>
+        </div>
+    )
 }
 
-export default App;
+export default App

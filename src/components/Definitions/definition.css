@@ -1,0 +1,40 @@
+.definition__container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 1rem;
+    scrollbar-width: thin;
+    min-height: 55vh;
+    border: 10px solid rgba(105, 105, 105, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.definition__subtitle {
+    font-size: 5vw;
+}
+
+.definition__single__item {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    background-color: white;
+    font-weight: 800;
+    color: black;
+}
+
+.definition__audio {
+    background-color: white;
+    border-radius: 10px;
+   
+}
+
+@media screen and (max-width: 900px) {
+    .definition__container {
+        height: 60vh;
+    
+    }
+}
